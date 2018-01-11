@@ -4,11 +4,18 @@
  require 'random_data'
 
  # Create Posts
- 50.times do
+ 50.times do |i|
+  if i%5 == 0
+   Post.create!(
+     title:  "SPAM",
+     body:   RandomData.random_paragraph
+   )
+  else
    Post.create!(
      title:  RandomData.random_sentence,
      body:   RandomData.random_paragraph
    )
+  end
  end
  posts = Post.all
  
