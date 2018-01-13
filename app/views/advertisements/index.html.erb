@@ -4,7 +4,7 @@
    <div class="media">
      <div class="media-body">
        <h4 class="media-heading">
-         <%= link_to ad.title, ad %>
+         <%= link_to ad.title + " -- $" + ad.price.to_s, ad %>
        </h4>
      </div>
    </div>
