@@ -29,6 +29,16 @@ RSpec.describe QuestionsController, type: :controller do
       get :new
       expect(response).to have_http_status(:success)
     end
+    
+    it "renders the #new view" do
+      get :new
+      expect(response).to render_template :new
+    end
+    
+    it "instantiates @question" do
+      get :new
+      expect(assigns(:question)).not_to be_nil
+    end
   end
 
   describe "GET #edit" do
