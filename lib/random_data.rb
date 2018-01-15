@@ -10,13 +10,20 @@
    end
  
    def self.random_sentence
+     random_statement.capitalize + "."
+   end
+   
+   def self.random_question
+     random_statement.capitalize + "?"
+   end
+   
+   def self.random_statement
      strings = []
      rand(3..8).times do
        strings << random_word
      end
  
-     sentence = strings.join(" ")
-     sentence.capitalize << "."
+     return strings.join(" ")
    end
  
    def self.random_word

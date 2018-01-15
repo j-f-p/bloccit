@@ -23,7 +23,7 @@
  # Create Questions
  50.times do
   Question.create!(
-   title: RandomData.random_sentence,
+   title: RandomData.random_question,
    body: RandomData.random_paragraph,
    resolved: [false, true].sample
   )
