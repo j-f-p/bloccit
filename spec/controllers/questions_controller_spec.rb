@@ -95,5 +95,44 @@ RSpec.describe QuestionsController, type: :controller do
       expect(question_instance.resolved).to eq my_question.resolved
     end
   end
-
+  
+   describe "PUT update" do
+     it "updates question with expected attributes" do
+       new_title = RandomData.random_sentence
+       new_body = RandomData.random_paragraph
+       new_resolved = [false, true].sample
+ 
+       put :update, params: { id: my_question.id, 
+        question: {title: new_title, body: new_body, resolved: new_resolved } }
+ 
+       updated_question = assigns(:question)
+       expect(updated_question.id).to eq my_question.id
+       expect(updated_question.title).to eq new_title
+       expect(updated_question.body).to eq new_body
+     end
+ 
+     it "redirects to the updated question" do
+       new_title = RandomData.random_sentence
+       new_body = RandomData.random_paragraph
+       new_resolved = [false, true].sample
+       
+       put :update, params: { id: my_question.id, 
+        question: {title: new_title, body: new_body, resolved: new_resolved } }
+        
+       expect(response).to redirect_to my_question
+     end
+   end
+   
+   describe "DELETE destroy" do
+     it "deletes the question" do
+       delete :destroy, params: { id: my_question.id }
+       count = Question.where({id: my_question.id}).size
+       expect(count).to eq 0
+     end
+ 
+     it "redirects to questions index" do
+       delete :destroy, params: { id: my_question.id }
+       expect(response).to redirect_to questions_path
+     end
+   end
 end
