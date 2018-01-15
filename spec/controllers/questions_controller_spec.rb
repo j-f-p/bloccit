@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe QuestionsController, type: :controller do
   let(:my_question) { Question.create!(
     title: RandomData.random_question, body: RandomData.random_paragraph,
-    resolved: false ) }
+    resolved: [false, true].sample ) }
 
   describe "GET #index" do
     it "returns http success" do
@@ -18,10 +18,20 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe "GET #show" do
-    it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
-    end
+     it "returns http success" do
+       get :show, params: { id: my_question.id }
+       expect(response).to have_http_status(:success)
+     end
+     
+     it "renders the #show view" do
+       get :show, params: { id: my_question.id }
+       expect(response).to render_template :show
+     end
+ 
+     it "assigns my_question to @question" do
+       get :show, params: { id: my_question.id }
+       expect(assigns(:question)).to eq(my_question)
+     end
   end
 
   describe "GET #new" do
@@ -45,19 +55,20 @@ RSpec.describe QuestionsController, type: :controller do
     it "increases the number of Question by 1" do
       expect{ post :create, params: { question:
              { title: RandomData.random_question,
-                 body: RandomData.random_paragraph }
+                 body: RandomData.random_paragraph,
+                 resolved: [false, true].sample }
         } }.to change(Question,:count).by(1)
     end
 
     it "assigns the new post to @question" do
       post :create, params: { question: { title: RandomData.random_question, 
-        body: RandomData.random_paragraph } }
+        body: RandomData.random_paragraph, resolved: [false, true].sample } }
       expect(assigns(:question)).to eq Question.last
     end
 
     it "redirects to the new question" do
       post :create, params: { question: { title: RandomData.random_question,
-        body: RandomData.random_paragraph } }
+        body: RandomData.random_paragraph, resolved: [false, true].sample } }
       expect(response).to redirect_to Question.last
     end
   end
