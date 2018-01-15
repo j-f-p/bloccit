@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
   let(:my_question) { Question.create!(
-    title: RandomData.random_sentence, body: RandomData.random_paragraph,
+    title: RandomData.random_question, body: RandomData.random_paragraph,
     resolved: false ) }
 
   describe "GET #index" do
@@ -40,7 +40,28 @@ RSpec.describe QuestionsController, type: :controller do
       expect(assigns(:question)).not_to be_nil
     end
   end
+  
+  describe "POST create" do
+    it "increases the number of Question by 1" do
+      expect{ post :create, params: { question:
+             { title: RandomData.random_question,
+                 body: RandomData.random_paragraph }
+        } }.to change(Question,:count).by(1)
+    end
 
+    it "assigns the new post to @question" do
+      post :create, params: { question: { title: RandomData.random_question, 
+        body: RandomData.random_paragraph } }
+      expect(assigns(:question)).to eq Question.last
+    end
+
+    it "redirects to the new question" do
+      post :create, params: { question: { title: RandomData.random_question,
+        body: RandomData.random_paragraph } }
+      expect(response).to redirect_to Question.last
+    end
+  end
+  
   describe "GET #edit" do
     it "returns http success" do
       get :edit
