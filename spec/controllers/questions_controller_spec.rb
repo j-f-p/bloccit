@@ -75,8 +75,24 @@ RSpec.describe QuestionsController, type: :controller do
   
   describe "GET #edit" do
     it "returns http success" do
-      get :edit
+      get :edit, params: { id: my_question.id }
       expect(response).to have_http_status(:success)
+    end
+    
+    it "renders the #edit view" do
+      get :edit, params: { id: my_question.id }
+      expect(response).to render_template :edit
+    end
+    
+    it "assigns question to be updated to @question" do
+      get :edit, params: { id: my_question.id }
+      
+      question_instance = assigns(:question)
+      
+      expect(question_instance.id).to eq my_question.id
+      expect(question_instance.title).to eq my_question.title
+      expect(question_instance.body).to eq my_question.body
+      expect(question_instance.resolved).to eq my_question.resolved
     end
   end
 
