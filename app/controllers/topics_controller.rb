@@ -28,4 +28,20 @@ class TopicsController < ApplicationController
   def edit
     @topic = Topic.find(params[:id])
   end
+  
+  def update
+    @topic = Topic.find(params[:id])
+
+    @topic.name = params[:topic][:name]
+    @topic.description = params[:topic][:description]
+    @topic.public = params[:topic][:public]
+
+    if @topic.save
+      flash[:notice] = "Topic was updated."
+      redirect_to @topic
+    else
+      flash.now[:alert] = "Error saving topic. Please try again."
+      render :edit
+    end
+  end
 end
