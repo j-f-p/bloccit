@@ -32,4 +32,21 @@ RSpec.describe TopicsController, type: :controller do
       expect(assigns(:topic)).to eq(my_topic)
     end
   end
+  
+  describe "GET new" do
+    it "returns http success" do
+      get :new
+      expect(response).to have_http_status(:success)
+    end
+  
+    it "renders the #new view" do
+      get :new
+      expect(response).to render_template :new
+    end
+  
+    it "initializes @topic" do
+      get :new
+      expect(assigns(:topic)).not_to be_nil
+    end
+end
 end
