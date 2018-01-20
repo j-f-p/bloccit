@@ -5,7 +5,7 @@
     <p><%= @sponsor.body %></p>
   </div>
   <div class="col-md-4">
-    <% link_to "Edit", edit_topic_sponsor_path(@sponsor.topic, @sponsor),
+    <%= link_to "Edit", edit_topic_sponsor_path(@sponsor.topic, @sponsor),
       class: 'btn btn-success' %>
     <%= link_to "Delete Sponsored Post", [@sponsor.topic, @sponsor],
       method: :delete, class: 'btn btn-danger',

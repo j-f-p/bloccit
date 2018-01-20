@@ -67,8 +67,24 @@ RSpec.describe SponsorsController, type: :controller do
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit
+      get :edit, params: { topic_id: my_topic.id, id: my_sponsor.id }
       expect(response).to have_http_status(:success)
+    end
+    
+    it "renders the #edit view" do
+      get :edit, params: { topic_id: my_topic.id, id: my_sponsor.id }
+      expect(response).to render_template :edit
+    end
+    
+    it "assigns sponsor to be updated to @sponsor" do
+      get :edit, params: { topic_id: my_topic.id, id: my_sponsor.id }
+      
+      sponsor_instance = assigns(:sponsor)
+      
+      expect(sponsor_instance.id).to eq my_sponsor.id
+      expect(sponsor_instance.title).to eq my_sponsor.title
+      expect(sponsor_instance.body).to eq my_sponsor.body
+      expect(sponsor_instance.price).to eq my_sponsor.price
     end
   end
 

@@ -27,5 +27,6 @@ class SponsorsController < ApplicationController
   end
   
   def edit
+    @sponsor = Sponsor.find(params[:id])
   end
 end
