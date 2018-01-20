@@ -3,6 +3,8 @@ class SponsorsController < ApplicationController
   end
 
   def new
+    @topic = Topic.find(params[:topic_id])
+    @sponsor = Sponsor.new
   end
 
   def edit
