@@ -34,8 +34,9 @@ end
 10.times do
   Sponsor.create!(
     topic:  topics.sample,
-    title:  RandomData.random_sentence + "[sponsored]",
-    body:   RandomData.random_paragraph
+    title:  RandomData.random_sentence + " [sponsored]",
+    body:   RandomData.random_paragraph,
+    price:  rand(1..100)
   )
 end
 
