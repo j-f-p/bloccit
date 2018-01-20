@@ -21,6 +21,19 @@
         </div>
       </div>
     <% end %>
+    <% @topic.sponsors.each do |sponsor| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to sponsor.title, topic_sponsor_path(@topic, sponsor) %>
+          </h4>
+          
+          <small>
+            submitted <%= time_ago_in_words(sponsor.created_at) %> ago <br>
+          </small>
+        </div>
+      </div>
+    <% end %>
   </div>
   <div class="col-md-4">
     <%= link_to "New Post", new_topic_post_path(@topic), 
