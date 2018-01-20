@@ -88,4 +88,43 @@ RSpec.describe SponsorsController, type: :controller do
     end
   end
 
+  describe "PUT update" do
+    it "updates sponsor with expected attributes" do
+      new_title = RandomData.random_sentence
+      new_body = RandomData.random_paragraph
+      new_price = rand(1..100)
+
+      put :update, params: { topic_id: my_topic.id, id: my_sponsor.id, 
+               sponsor: {title: new_title, body: new_body, price: new_price } }
+
+      updated_sponsor = assigns(:sponsor)
+      expect(updated_sponsor.id).to eq my_sponsor.id
+      expect(updated_sponsor.title).to eq new_title
+      expect(updated_sponsor.body).to eq new_body
+      expect(updated_sponsor.price).to eq new_price
+    end
+
+    it "redirects to the updated sponsor" do
+      new_title = RandomData.random_sentence
+      new_body = RandomData.random_paragraph
+      new_price = rand(1..100)
+
+      put :update, params: { topic_id: my_topic.id, id: my_sponsor.id,
+               sponsor: {title: new_title, body: new_body, price: new_price } }
+      expect(response).to redirect_to [my_topic, my_sponsor]
+    end
+  end
+  
+  describe "DELETE destroy" do
+    it "deletes the sponsor" do
+      delete :destroy, params: { topic_id: my_topic.id, id: my_sponsor.id }
+      count = Sponsor.where({id: my_sponsor.id}).size
+      expect(count).to eq 0
+    end
+
+    it "redirects to sponsors index" do
+      delete :destroy, params: { topic_id: my_topic.id, id: my_sponsor.id }
+      expect(response).to redirect_to my_topic
+    end
+  end
 end
