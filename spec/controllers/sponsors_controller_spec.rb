@@ -2,12 +2,26 @@ require 'rails_helper'
 
 RSpec.describe SponsorsController, type: :controller do
   let(:my_topic) { Topic.create!(name:  RandomData.random_sentence,
-   description: RandomData.random_paragraph) }
-
+    description: RandomData.random_paragraph) }
+   
+  let(:my_sponsor) { my_topic.sponsors.create!(
+    title: RandomData.random_sentence, body: RandomData.random_paragraph,
+    price: rand(1..100)) }
+    
   describe "GET #show" do
     it "returns http success" do
-      get :show
+      get :show, params: { topic_id: my_topic.id, id: my_sponsor.id }
       expect(response).to have_http_status(:success)
+    end
+    
+    it "renders the #show view" do
+      get :show, params: { topic_id: my_topic.id, id: my_sponsor.id }
+      expect(response).to render_template :show
+    end
+
+    it "assigns my_sponsor to @sponsor" do
+      get :show, params: { topic_id: my_topic.id, id: my_sponsor.id }
+      expect(assigns(:sponsor)).to eq(my_sponsor)
     end
   end
 
