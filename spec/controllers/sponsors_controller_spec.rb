@@ -26,8 +26,31 @@ RSpec.describe SponsorsController, type: :controller do
       get :new, params: { topic_id: my_topic.id }
       expect(assigns(:sponsor)).not_to be_nil
     end
-
   end
+   
+  describe "POST create" do
+    it "increases the number of Sponsors by 1" do
+      expect{ post :create, params: { topic_id: my_topic.id,
+        sponsor: { title: RandomData.random_sentence,
+        body: RandomData.random_paragraph, price: rand(1..100) } }
+      }.to change(Sponsor,:count).by(1)
+    end
+
+    it "assigns the new sponsor to @sponsor" do
+      post :create, params: { topic_id: my_topic.id, sponsor: {
+        title: RandomData.random_sentence, body: RandomData.random_paragraph,
+        price: rand(1..100)} }
+      expect(assigns(:sponsor)).to eq Sponsor.last
+    end
+
+    it "redirects to the new sponsor" do
+      post :create, params: { topic_id: my_topic.id, sponsor: {
+        title: RandomData.random_sentence, body: RandomData.random_paragraph,
+        price: rand(1..100)} }
+      expect(response).to redirect_to [my_topic, Sponsor.last]
+    end
+  end
+
 
   describe "GET #edit" do
     it "returns http success" do
