@@ -39,4 +39,17 @@ RSpec.describe User, type: :model do
       expect(user_with_invalid_email).to_not be_valid
     end
   end
+  
+  describe "capitalized first letter of" do
+    let(:client) { User.create!(name: "bloccit user", email: "user@bloccit.com",
+      password: "password") }
+      
+    it "first name" do
+      expect(client.name.split(' ')[0]).to eq("Bloccit")
+    end
+    
+    it "last name" do
+      expect(client.name.split(' ')[1]).to eq("User")
+    end
+  end
 end
