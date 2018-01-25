@@ -55,4 +55,16 @@ RSpec.describe UsersController, type: :controller do
         new_user_attributes[:password_confirmation])
     end
   end
+  
+  describe "POST confirm" do
+    it "returns http success" do
+      post :confirm, params: { user: new_user_attributes }
+      expect(response).to have_http_status(:success)
+    end
+  
+    it "renders the #confirm view" do
+      post :confirm, params: { user: new_user_attributes }
+      expect(response).to render_template :confirm
+    end
+  end
 end
