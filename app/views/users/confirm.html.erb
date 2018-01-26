@@ -7,5 +7,6 @@
 <div>
   <%= button_to "Yes", {controller: "users", action: "create",
     params: params.permit!}, class: 'btn btn-success' %>
-  <%= button_to "No", {controller: "users", action: "new"}, class: 'btn' %>  
+  <%= button_to "No", {controller: "users", action: "new"}, class: 'btn',
+    method: :get %>
 </div>
