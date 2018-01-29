@@ -15,3 +15,17 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+.nav > li > a {
+  padding: 18px 15px;
+  // increased from 10px 15px to match a.nav-link-to with padding: 4px;
+}
+.nav > li > a.nav-link-to {
+  padding: 4px; // matches .nav-tabs border radius
+}
+.nav > li > a.nav-link-to > p {
+  display: inline-block;
+  margin: 0;
+  line-height: normal;
+  vertical-align: middle;
+  text-align: center;
+}
