@@ -5,7 +5,7 @@ class User < ApplicationRecord
   
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
   
-  if "password_digest.nil?"
+  if :password_digest.nil?
     validates :password, presence: true, length: { minimum: 6 }
   end
   
