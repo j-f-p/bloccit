@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_action :require_sign_in, except: [:index, :show]
-  before_action :authorize_user, only: [:new, :create]
+  before_action :authorize_user, only: [:new, :create, :destroy]
   before_action :authorize_moderator, only: [:edit, :update]
   
   def index
