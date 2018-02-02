@@ -4,13 +4,35 @@
 
 require 'random_data'
 
-5.times do
+4.times do
   User.create!(
     name:     RandomData.random_name,
     email:    RandomData.random_email,
     password: RandomData.random_sentence
   )
 end
+
+admin = User.create!(
+  name:     'Admin User',
+  email:    'admin@example.com',
+  password: 'qwepoi',
+  role:     'admin'
+)
+
+admin = User.create!(
+  name:     'Moderator User',
+  email:    'moderator@example.com',
+  password: 'qwepoi',
+  role:     'moderator'
+)
+
+member = User.create!(
+  name:     'Member User',
+  email:    'member@example.com',
+  password: 'qwepoi',
+  role:     'member'
+)
+
 users = User.all
 
 15.times do
@@ -39,20 +61,6 @@ posts = Post.all
     body: RandomData.random_paragraph
   )
 end
-
-admin = User.create!(
-  name:     'Admin User',
-  email:    'admin@example.com',
-  password: 'helloworld',
-  role:     'admin'
-)
-
-member = User.create!(
-  name:     'Member User',
-  email:    'member@example.com',
-  password: 'helloworld',
-  role:     'member'
-)
 
 puts "Seed finished"
 puts "#{User.count} users created"
