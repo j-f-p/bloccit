@@ -77,4 +77,14 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+  
+  describe "create_vote callback" do
+    it "#create_vote should result in new post with one 1 point" do
+      expect(post.points).to eq 1
+    end
+    
+    it "further confirm that post vote is associated with post user" do
+      expect(post.votes.where(user: user).count).to eq 1
+    end
+  end 
 end
