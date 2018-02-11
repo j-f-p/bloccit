@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p> Hello <%= @post.user.name %>, </p>
+    <p>
+      Your new post was automatically set as a favorite of yours. You'll receive
+      an email message for every new comment about the post. For convenience, a
+      copy of the post is shown below along with a link to it.
+    </p>
+    <p> Cheers, Bloccit Services </p>
+    <hr>
+    <h1>New Post Entitled "<%= @post.title %>"</h1>
+    <small>
+      By: <%= @post.user.name %>
+    </small>
+    <p>
+      <%= @post.body %>
+    </p>
+    <p>
+      <%= link_to "View Post on site", topic_post_url(@post.topic, @post) %>
+    </p>
+  </body>
+</html>

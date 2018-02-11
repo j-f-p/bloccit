@@ -1,0 +1,18 @@
+Hello <%= @post.user.name %>,
+
+Your new post was automatically set as a favorite of yours. You'll receive
+an email message for every new comment about the post. For convenience, a
+copy of the post is shown below along with a link to it.
+
+Cheers, Bloccit Services
+
+<%= "=" * (@post.title.length + 20) %>
+
+New Post Entitled "<%= @post.title %>"
+
+By: <%= @post.user.name %>
+
+<%= @post.body %>
+
+Visit online at: <%= topic_post_url(@post.topic, @post) %>
+  
