@@ -80,17 +80,20 @@ RSpec.describe Post, type: :model do
     end
     
     describe "after_create" do
-      # before do
-      #   @another_post = topic.posts.create!(title: RandomData.random_sentence,
-      #     body: RandomData.random_paragraph, user: user)
-      # end
-      
       it "create a favorite for post" do
         expect( post.favorites.where(post_id: post.id).count ).to eq 1
       end
       
       it "create a favorite for user associated with post" do
         expect( user.favorites.where(post_id: post.id).count ).to eq 1
+      end
+      
+      it "sends an email to the user that created the post" do
+        @another_post = topic.posts.new(title: RandomData.random_sentence,
+          body: RandomData.random_paragraph, user: user)
+        expect(FavoriteMailer).to receive(:new_post).with(user,
+          @another_post).and_return(double(deliver_now: true))
+        @another_post.save!
       end
     end
   end

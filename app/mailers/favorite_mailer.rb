@@ -3,9 +3,9 @@ class FavoriteMailer < ApplicationMailer
 
   def new_comment(user, post, comment)
 
-    headers["Message-ID"] = "<comments/#{comment.id}@your-app-name.example>"
-    headers["In-Reply-To"] = "<post/#{post.id}@your-app-name.example>"
-    headers["References"] = "<post/#{post.id}@your-app-name.example>"
+    headers["Message-ID"] = "<comments/#{comment.id}@bloccit.example>"
+    headers["In-Reply-To"] = "<post/#{post.id}@bloccit.example>"
+    headers["References"] = "<post/#{post.id}@blocbloccit.example>"
 
     @user = user
     @post = post
@@ -15,8 +15,8 @@ class FavoriteMailer < ApplicationMailer
   end
   
   def new_post(user, post)
-    headers["In-Reply-To"] = "<post/#{post.id}@your-app-name.example>"
-    headers["References"] = "<post/#{post.id}@your-app-name.example>"
+    headers["In-Reply-To"] = "<post/#{post.id}@blocbloccit.example>"
+    headers["References"] = "<post/#{post.id}@blocbloccit.example>"
 
     @user = user
     @post = post
