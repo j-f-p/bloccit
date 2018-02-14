@@ -35,7 +35,9 @@ RSpec.describe PostsController, type: :controller do
 
     describe "POST create" do
       it "returns http redirect" do
-        post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
+        post :create, params: { topic_id: my_topic.id,
+          post: { title: RandomData.random_sentence,
+          body: RandomData.random_paragraph } }
         expect(response).to redirect_to(new_session_path)
       end
     end
@@ -52,7 +54,8 @@ RSpec.describe PostsController, type: :controller do
         new_title = RandomData.random_sentence
         new_body = RandomData.random_paragraph
 
-        put :update, params: { topic_id: my_topic.id, id: my_post.id, post: { title: new_title, body: new_body } }
+        put :update, params: { topic_id: my_topic.id, id: my_post.id,
+          post: { title: new_title, body: new_body } }
         expect(response).to redirect_to(new_session_path)
       end
     end
@@ -106,16 +109,22 @@ RSpec.describe PostsController, type: :controller do
 
     describe "POST create" do
       it "increases the number of Post by 1" do
-        expect{ post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } } }.to change(Post,:count).by(1)
+        expect{ post :create, params: { topic_id: my_topic.id,
+          post: { title: RandomData.random_sentence,
+          body: RandomData.random_paragraph } } }.to change(Post,:count).by(1)
       end
 
       it "assigns the new post to @post" do
-        post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
+        post :create, params: { topic_id: my_topic.id,
+          post: { title: RandomData.random_sentence,
+          body: RandomData.random_paragraph } }
         expect(assigns(:post)).to eq Post.last
       end
 
       it "redirects to the new post" do
-        post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
+        post :create, params: { topic_id: my_topic.id,
+          post: { title: RandomData.random_sentence,
+          body: RandomData.random_paragraph } }
         expect(response).to redirect_to [my_topic, Post.last]
       end
     end
@@ -132,7 +141,8 @@ RSpec.describe PostsController, type: :controller do
         new_title = RandomData.random_sentence
         new_body = RandomData.random_paragraph
 
-        put :update, params: { topic_id: my_topic.id, id: my_post.id, post: { title: new_title, body: new_body } }
+        put :update, params: { topic_id: my_topic.id, id: my_post.id,
+          post: { title: new_title, body: new_body } }
         expect(response).to redirect_to([my_topic, my_post])
       end
     end
@@ -187,16 +197,22 @@ RSpec.describe PostsController, type: :controller do
 
     describe "POST create" do
       it "increases the number of Post by 1" do
-        expect{ post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } } }.to change(Post,:count).by(1)
+        expect{ post :create, params: { topic_id: my_topic.id,
+          post: { title: RandomData.random_sentence,
+          body: RandomData.random_paragraph } } }.to change(Post,:count).by(1)
       end
 
       it "assigns the new post to @post" do
-        post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
+        post :create, params: { topic_id: my_topic.id,
+          post: { title: RandomData.random_sentence,
+          body: RandomData.random_paragraph } }
         expect(assigns(:post)).to eq Post.last
       end
 
       it "redirects to the new post" do
-        post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
+        post :create, params: { topic_id: my_topic.id,
+          post: { title: RandomData.random_sentence,
+          body: RandomData.random_paragraph } }
         expect(response).to redirect_to [my_topic, Post.last]
       end
     end
@@ -227,7 +243,8 @@ RSpec.describe PostsController, type: :controller do
         new_title = RandomData.random_sentence
         new_body = RandomData.random_paragraph
 
-        put :update, params: { topic_id: my_topic.id, id: my_post.id, post: { title: new_title, body: new_body } }
+        put :update, params: { topic_id: my_topic.id, id: my_post.id,
+          post: { title: new_title, body: new_body } }
 
         updated_post = assigns(:post)
         expect(updated_post.id).to eq my_post.id
@@ -239,7 +256,8 @@ RSpec.describe PostsController, type: :controller do
         new_title = RandomData.random_sentence
         new_body = RandomData.random_paragraph
 
-        put :update, params: { topic_id: my_topic.id, id: my_post.id, post: { title: new_title, body: new_body } }
+        put :update, params: { topic_id: my_topic.id, id: my_post.id,
+          post: { title: new_title, body: new_body } }
         expect(response).to redirect_to [my_topic, my_post]
       end
     end
@@ -300,16 +318,22 @@ RSpec.describe PostsController, type: :controller do
 
     describe "POST create" do
       it "increases the number of Post by 1" do
-        expect{ post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } } }.to change(Post,:count).by(1)
+        expect{ post :create, params: { topic_id: my_topic.id,
+          post: { title: RandomData.random_sentence,
+          body: RandomData.random_paragraph } } }.to change(Post,:count).by(1)
       end
 
       it "assigns the new post to @post" do
-        post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
+        post :create, params: { topic_id: my_topic.id,
+          post: { title: RandomData.random_sentence,
+          body: RandomData.random_paragraph } }
         expect(assigns(:post)).to eq Post.last
       end
 
       it "redirects to the new post" do
-        post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
+        post :create, params: { topic_id: my_topic.id,
+          post: { title: RandomData.random_sentence,
+          body: RandomData.random_paragraph } }
         expect(response).to redirect_to [my_topic, Post.last]
       end
     end
@@ -340,7 +364,8 @@ RSpec.describe PostsController, type: :controller do
         new_title = RandomData.random_sentence
         new_body = RandomData.random_paragraph
 
-        put :update, params: { topic_id: my_topic.id, id: my_post.id, post: { title: new_title, body: new_body } }
+        put :update, params: { topic_id: my_topic.id, id: my_post.id,
+          post: { title: new_title, body: new_body } }
 
         updated_post = assigns(:post)
         expect(updated_post.id).to eq my_post.id
@@ -352,7 +377,8 @@ RSpec.describe PostsController, type: :controller do
         new_title = RandomData.random_sentence
         new_body = RandomData.random_paragraph
 
-        put :update, params: { topic_id: my_topic.id, id: my_post.id, post: { title: new_title, body: new_body } }
+        put :update, params: { topic_id: my_topic.id, id: my_post.id,
+          post: { title: new_title, body: new_body } }
         expect(response).to redirect_to [my_topic, my_post]
       end
     end
