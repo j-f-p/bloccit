@@ -60,9 +60,18 @@ posts = Post.all
   )
 end
 
+# Create Favorites
+100.times do
+  Favorite.create!(
+    user: users.sample,
+    post: posts.sample
+  )
+end
+
 puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Vote.count} votes created"
+puts "#{Favorite.count} favorite created"
