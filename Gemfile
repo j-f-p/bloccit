@@ -51,3 +51,6 @@ end
 gem 'bootstrap-sass'
 gem 'bcrypt'
 gem 'figaro', '1.0'
+
+# appease heroku deployment warning
+ruby "2.4.1"
